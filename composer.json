@@ -69,6 +69,8 @@
             "./vendor/bin/pint",
             "bun run format"
         ],
+        "refactor": "./vendor/bin/rector process",
+        "refactor:dry": "./vendor/bin/rector process --dry-run",
         "sniff": "vendor/bin/phpstan analyse --memory-limit 1G",
         "dev": [
             "Composer\\Config::disableProcessTimeout",

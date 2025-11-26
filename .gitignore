@@ -23,6 +23,7 @@ Homestead.yaml
 .phpunit.cache
 .phpunit.result.cache
 _ide_helper.php
+rector-cache
 
 # Dependency/build artifacts
 /node_modules
