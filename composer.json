@@ -53,7 +53,8 @@
             "@php artisan migrate --force",
             "bun install",
             "bunx playwright install",
-            "bun run build"
+            "bun run build",
+            "@php artisan ide-helper:generate"
         ],
         "lint": [
             "./vendor/bin/pint --test",
