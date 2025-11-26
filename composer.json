@@ -25,6 +25,7 @@
         "pestphp/pest": "^4.1",
         "pestphp/pest-plugin-browser": "^4.1",
         "pestphp/pest-plugin-laravel": "^4.0",
+        "pestphp/pest-plugin-profanity": "^4.2",
         "pestphp/pest-plugin-stressless": "^4.0",
         "pestphp/pest-plugin-type-coverage": "^4.0",
         "ryoluo/sail-ssl": "^1.4"
