@@ -21,5 +21,13 @@
         "prettier-plugin-tailwindcss": "^0.7.1",
         "tailwindcss": "^4.0.0",
         "vite": "^7.0.7"
+    },
+    "lint-staged": {
+        "**/*{blade,css,js,json,md}": [
+            "bun run format"
+        ],
+        "**/*.php*": [
+            "vendor/bin/pint"
+        ]
     }
 }
