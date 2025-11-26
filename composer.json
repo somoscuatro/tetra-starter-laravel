@@ -65,9 +65,15 @@
             "Composer\\Config::disableProcessTimeout",
             "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
         ],
+        "test:unit": "./vendor/bin/pest --parallel",
+        "test:unit:coverage": "./vendor/bin/pest --parallel --coverage",
+        "test:types": "./vendor/bin/pest --type-coverage",
+        "test:profanity": "./vendor/bin/pest --profanity",
+        "test:stress": "./vendor/bin/pest stress",
         "test": [
-            "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "@test:unit",
+            "@test:profanity",
+            "@test:types"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
