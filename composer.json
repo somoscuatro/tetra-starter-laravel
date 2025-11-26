@@ -47,6 +47,7 @@
             "@php artisan key:generate",
             "@php artisan migrate --force",
             "bun install",
+            "bunx playwright install",
             "bun run build"
         ],
         "lint": [
