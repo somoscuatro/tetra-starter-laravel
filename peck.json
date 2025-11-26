@@ -1,0 +1,7 @@
+{
+    "preset": "laravel",
+    "ignore": {
+        "words": ["php", "filesystems", "favicon", "js", "commitlint", "supervisord", "pgsql", "nginx"],
+        "paths": []
+    }
+}
