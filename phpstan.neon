@@ -6,6 +6,5 @@ parameters:
         - app/
         - routes/
         - database/
-        - tests/
 
     level: max
