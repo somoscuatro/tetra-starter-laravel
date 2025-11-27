@@ -1,0 +1,65 @@
+# GitHub Action to run typo checks with Peck and Pest Profanity.
+#
+# Adjusted on the top of wieni/github-action-setup-php collection
+# @see https://github.com/wieni/github-action-setup-php/blob/main/examples/laravel-postgres.yml
+
+name: Typos
+on:
+    push:
+        branches:
+            - main
+            - dev
+    pull_request:
+        branches:
+            - main
+            - dev
+jobs:
+    sniff:
+        name: Typos
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                php-versions: ['8.4']
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Install aspell
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y aspell aspell-en
+
+            - name: Setup the app env file
+              run: |
+                  php -r "copy('.env.ci', '.env');"
+
+            # Docs: https://github.com/shivammathur/setup-php
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
+                  extensions: mbstring, dom, fileinfo, pgsql
+                  coverage: xdebug
+
+            - name: Get Composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache composer dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-
+
+            - name: Install Composer dependencies
+              run: composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader
+
+            - name: Run Peck check
+              run: composer run test:typos
+
+            - name: Run Pest Profanity check
+              run: composer run test:profanity
