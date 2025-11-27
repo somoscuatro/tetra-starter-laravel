@@ -1,5 +1,9 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
+    "name": "@somoscuatro/tetra-starter-laravel",
+    "description": "An opinionated Laravel starter kit to build modern web applications.",
+    "version": "1.1.0",
+    "type": "module",
     "private": true,
     "scripts": {
         "postinstall": "husky",
@@ -8,7 +12,6 @@
         "dev": "vite",
         "build": "vite build"
     },
-    "type": "module",
     "devDependencies": {
         "@commitlint/cli": "^20.1.0",
         "@commitlint/config-conventional": "^20.0.0",
